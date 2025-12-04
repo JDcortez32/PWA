@@ -1,359 +1,112 @@
 :root {
-  --bg: #0b132b;
-  --card: #1c2541;
-  --ink: #e0e6f8;
-  --muted: #8791b0;
-  --accent: #3a86ff;
-  --success: #51cf66;
-  --danger: #ff6b6b;
-  --warning: #ffd43b;
+  --bg:#0b132b; 
+  --card:#1c2541; 
+  --ink:#e0e6f8; 
+  --muted:#8791b0; 
+  --accent:#3a86ff;
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing:border-box
 }
 
-html, body {
-  height: 100%;
+html,body {
+  height:100%
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.6;
+  margin:0;
+  font-family:system-ui,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink)
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.2rem;
-  background: linear-gradient(90deg, #0b132b, #1c2541);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 1.2rem;
+  background:linear-gradient(90deg,#0b132b,#1c2541);
+  position:sticky;
+  top:0
 }
 
 h1 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  margin:0;
+  font-size:1.25rem
 }
 
 main {
-  display: grid;
-  gap: 1rem;
-  padding: 1rem;
-  max-width: 1100px;
-  margin: 0 auto;
+  display:grid;
+  gap:1rem;
+  padding:1rem;
+  max-width:1100px;
+  margin:0 auto
 }
 
 .card {
-  background: var(--card);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.card h2 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 0.5rem;
+  background:var(--card);
+  padding:1rem;
+  border-radius:1rem;
+  box-shadow:0 10px 30px rgba(0,0,0,.25)
 }
 
 .controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  align-items: center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  margin-bottom:.5rem
 }
 
 .controls > * {
-  padding: 0.6rem 0.9rem;
-  border-radius: 0.6rem;
-  border: 1px solid #2b3557;
-  background: #0f1a3a;
-  color: var(--ink);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.controls button:hover:not(:disabled) {
-  background: #1a264a;
-  transform: translateY(-1px);
+  padding:.5rem .75rem;
+  border-radius:.6rem;
+  border:1px solid #2b3557;
+  background:#0f1a3a;
+  color:var(--ink)
 }
 
 .controls button[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.controls select {
-  flex: 1;
-  min-width: 200px;
-}
-
-.controls button#btnStartRec {
-  background: var(--success);
-  border-color: var(--success);
-  color: white;
-}
-
-.controls button#btnStopRec {
-  background: var(--danger);
-  border-color: var(--danger);
-  color: white;
-}
-
-#recStatus {
-  margin-left: auto;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  font-size: 0.85rem;
-  font-weight: 500;
+  opacity:.5
 }
 
 .media {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:.5rem
 }
 
-video, canvas {
-  width: 100%;
-  max-height: 60vh;
-  background: #000;
-  border-radius: 0.75rem;
-  display: block;
+video,canvas {
+  width:100%;
+  max-height:60vh;
+  background:#000;
+  border-radius:.75rem
 }
 
-.hidden {
-  display: none;
+.hidden { 
+  display:none
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 0.75rem;
-  margin-top: 1rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:.5rem;
+  margin-top:.5rem
 }
 
-.gallery > div {
-  background: #0f1a3a;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  padding: 0.75rem;
-}
-
-.gallery img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.gallery a {
-  display: block;
-  text-align: center;
-  background: var(--accent);
-  color: white;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-size: 0.85rem;
-}
-
-/* Estilos para audios */
-.audio-container {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.audio-container h3 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-  color: var(--muted);
-}
-
-.audio-list {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 0.5rem;
-}
-
-.audio-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.audio-list::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 3px;
-}
-
-.audio-list::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 3px;
-}
-
-.audio-item {
-  background: #0f1a3a;
-  border-radius: 0.75rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-}
-
-.audio-item:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.audio-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.75rem;
-}
-
-.audio-info {
-  flex: 1;
-}
-
-.audio-info strong {
-  display: block;
-  margin-bottom: 0.25rem;
-  color: var(--ink);
-  font-size: 0.95rem;
-  word-break: break-all;
-}
-
-.audio-details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.audio-details span {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.btn-delete {
-  background: transparent;
-  border: none;
-  color: var(--danger);
-  cursor: pointer;
-  padding: 0.4rem;
-  border-radius: 0.5rem;
-  font-size: 1.1rem;
-  transition: background 0.2s ease;
-}
-
-.btn-delete:hover {
-  background: rgba(255, 107, 107, 0.1);
-}
-
-.audio-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-.btn-download,
-.btn-play-pause {
-  flex: 1;
-  text-align: center;
-  padding: 0.6rem;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-  text-decoration: none;
-}
-
-.btn-download {
-  background: var(--accent);
-  color: white;
-}
-
-.btn-download:hover {
-  background: #2a75ff;
-}
-
-.btn-play-pause {
-  background: var(--success);
-  color: white;
-}
-
-.btn-play-pause:hover {
-  background: #40b555;
+.gallery a,.gallery audio {
+  width:100%
 }
 
 #btnInstall {
-  background: var(--accent);
-  border: none;
-  color: white;
-  font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.6rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-#btnInstall:hover {
-  background: #2a75ff;
-  transform: translateY(-1px);
+  background:var(--accent);
+  border:none;
+  color:white;
+  font-weight:600
 }
 
 footer {
-  padding: 2rem;
-  color: var(--muted);
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 2rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .controls select {
-    width: 100%;
-  }
-  
-  .audio-details {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-  
-  .audio-header {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .btn-delete {
-    align-self: flex-end;
-  }
+  padding:2rem;
+  color:var(--muted);
+  text-align:center
 }
