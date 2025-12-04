@@ -1,89 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover">
-    <title>PWA</title>
-    <meta name="theme-color" content="#c634d9">
-    <link rel="manifest" href="manifest.webmanifest">
-    <link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-styles" content="black-translucent">
-    <meta name="description" content="PWA (Camara y Microfono)">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Media PWA</title>
+  <meta name="theme-color" content="#c634d9" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="PWA (Cámara y Micrófono)" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <h1>Media PWA</h1>
-        <button id="btnInstall" hidden>Instalar</button>
-    </header>
-    <main>
-        <section class="card">
-            <h2>Cámara</h2>
-            <div class="controls">
-                <select id="videoDevices"></select>
-                <button id="btnStartCam">Iniciar</button>
-                <button id="btnStopCam">Detener</button>
-                <button id="btnFlip" title="Cambiar cámara" disabled>Invertir</button>
-                <button id="btnTorch" title="Linterna" disabled>Linterna</button>
-                <button id="btnShot" disabled>Foto</button>
-            </div>
-            <div class="media">
-                <video id="video" autoplay playsinline></video>
-                <canvas id="canvas" class="hidden"></canvas>
-            </div>
-            <div id="photos" class="gallery"></div>
-        </section>
+  <header>
+    <h1>Media PWA</h1>
+    <div class="header-actions">
+      <button id="btnInstall" hidden>Instalar</button>
+    </div>
+  </header>
 
-        <section class="card">
-            <h2>Grabación de Audio <span id="audioCount">(0)</span></h2>
-            <div class="controls">
-                <button id="btnStartRec">🎤 Grabar</button>
-                <button id="btnStopRec" disabled>⏹️ Detener</button>
-                <span id="recStatus" aria-live="polite">Listo</span>
-            </div>
-            
-            <!-- NUEVO: Contenedor para audios guardados -->
-            <div id="audioContainer" class="audio-container">
-                <h3>📁 Audios Guardados</h3>
-                <div id="audios" class="audio-list">
-                    <!-- Los audios se mostrarán aquí -->
-                </div>
-            </div>
-        </section>
+  <main>
+    <section class="card">
+      <h2>Cámara</h2>
+      <div class="controls">
+        <select id="videoDevices"></select>
+        <button id="btnStartCam">Iniciar</button>
+        <button id="btnStopCam" disabled>Detener</button>
+        <button id="btnFlip" title="Cambiar cámara" disabled>Invertir</button>
+        <button id="btnTorch" title="Linterna" disabled>Linterna</button>
+        <button id="btnShot" disabled>Foto</button>
+      </div>
+      <div class="media">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="canvas" class="hidden"></canvas>
+      </div>
+      <div id="photos" class="gallery"></div>
+    </section>
 
-        <section class="card">
-            <h2>Vibración</h2>
-            <div class="controls">
-                <button id="btnVibrar">📳 Vibrar</button>
-            </div>
-        </section>
+    <section class="card">
+      <h2>Grabación de audio</h2>
+      <div class="controls">
+        <button id="btnStartRec">Grabar</button>
+        <button id="btnStopRec" disabled>Detener</button>
+        <span id="recStatus" aria-live="polite"></span>
+      </div>
+      <div id="audios" class="gallery"></div>
+    </section>
 
-        <section class="card">
-            <h2>Tono de llamada</h2>
-            <div class="controls">
-                <button id="btnRingtone">🔔 Reproducir tono</button>
-            </div>
-        </section>
+    <section class="card">
+      <h2>Vibración</h2>
+      <div class="controls">
+        <button id="btnVibrar">Vibrar</button>
+      </div>
+    </section>
 
-        <section class="card">
-            <h2>Compatibilidad y permisos</h2>
-            <ul>
-                <li>Requiere HTTPS y permisos del usuario.</li>
-                <li>iOS restringe más que Android y si una función no aparece es limitación del navegador.</li>
-                <li>Offline, la app carga sin red, captura en vivo requiere conexión con el hardware en ese momento.</li>
-            </ul>
-            <details>
-                <summary>Prueba rápida sin permisos persistentes.</summary>
-                <input type="file" accept="image/*,captura=camera,video/*;capture=camera,audio/*">
-            </details>
-        </section>
-    </main>
+    <section class="card">
+      <h2>Tono de llamada</h2>
+      <div class="controls">
+        <button id="btnRingtone">Reproducir tono</button>
+      </div>
+      <audio id="ringtoneAudio" preload="auto" src="assets/ringtone.mp3"></audio>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Media PWA</p>
-    </footer>
+    <section class="card">
+      <h2>Compatibilidad y permisos</h2>
+      <ul>
+        <li>Requiere HTTPS y permisos del usuario.</li>
+        <li>iOS limita algunas funciones (linterna, instalación estándar, service worker en algunas versiones).</li>
+        <li>Offline: la app carga con el SW. Capturas requieren acceso al hardware en tiempo real.</li>
+      </ul>
+    </section>
+  </main>
 
-    <script src="app.js" type="module"></script>
+  <footer>
+    <p>&copy; 2025 Media PWA</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
